@@ -9,8 +9,8 @@
   <input type="button" value="post" id="post" style="font-size: 2em" />
   <script>
     document.getElementById('post').addEventListener('click', () => {
-      window.parent.postMessage({ post: 'parent' });
-      window.opener && window.opener.postMessage({ post: 'opener' });
+      window.parent.postMessage({ post: 'parent' }, window.location.origin);
+      window.opener && window.opener.postMessage({ post: 'opener' }, window.location.origin);
     });
   </script>
 </body>
