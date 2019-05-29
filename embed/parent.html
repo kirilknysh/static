@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>embed parent</title>
+</head>
+<body>
+  <input type="button" value="open child" id="open" />
+  <section id="log"></section>
+
+  <script>
+    const log = document.getElementById('log');
+    const openButton = document.getElementById('open');
+    let child = null;
+
+    let counter = 3;
+    window.addEventListener('message', (event) => {
+      log.innerHTML += `<div>${JSON.stringify(event.data)}</div>`
+      if (--counter <= 0) {
+        child && child.close();
+      }
+    });
+
+    openButton.addEventListener('click', () => {
+      counter = 3;
+      child = window.open(`${window.location.href.replace('parent', 'child')}`, 'Child', 'chrome,centerscreen,dependent,resizable,modal,width=300,height=450');
+    });
+  </script>
+</body>
+</html>

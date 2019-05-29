@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>iframe load</title>
+</head>
+<body>
+  <section id="container"></section>
+
+  <script>
+    function createIframe(name, src) {
+      const iframe = document.createElement('iframe');
+
+      iframe.setAttribute('src', src);
+      iframe.setAttribute('name', name);
+
+      iframe.addEventListener('load', (event) => {
+        console.log(`[${name}] load:`, event);
+      });
+      iframe.addEventListener('error', (event) => {
+        console.log(`[${name}] error:`, event);
+      });
+
+      return iframe;
+    }
+
+    const container = document.getElementById('container');
+
+    container.appendChild(createIframe('wiki', 'https://www.wikipedia.org'));
+    container.appendChild(createIframe('fake', 'http://www.fake.domain.goes.here'));
+  </script>
+</body>
+</html>

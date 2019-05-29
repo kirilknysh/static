@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>embed child</title>
+</head>
+<body>
+  <input type="button" value="post" id="post" />
+  <script>
+    document.getElementById('post').addEventListener('click', () => {
+      window.parent.postMessage({ post: 'parent' });
+      window.opener && window.opener.postMessage({ post: 'opener' });
+    });
+  </script>
+</body>
+</html>
